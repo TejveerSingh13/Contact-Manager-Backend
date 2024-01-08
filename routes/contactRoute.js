@@ -1,20 +1,15 @@
 const express = require("express")
 const router = express.Router()
+const { 
+    getContacts, 
+    createContact, 
+    getContact, 
+    updateContact, 
+    deleteContact } = require("../controllers/contactControllers")
 
-router.route("/").get((req,res) => {
-    res.status(200).json({message : "Get all Contacts"})
-})
-router.route("/").post((req,res) => {
-    res.status(200).json({message : "Create Contact"})
-})
-router.route("/:id").get((req,res) => {
-    res.status(200).json({message : `Get contact for ${req.params.id}`})
-})
-router.route("/:id").put((req,res) => {
-    res.status(200).json({message : `Update contact for ${req.params.id}`})
-})
-router.route("/:id").delete((req,res) => {
-    res.status(200).json({message : `Delete contact for ${req.params.id}`})
-})
+// Since routes have the same link we can chain them.
+
+router.route("/").get(getContacts).post(createContact)
+router.route("/:id").get(getContact).put(updateContact).delete(deleteContact)
 
 module.exports = router
