@@ -23,6 +23,7 @@ const errorHandler = (err, req, res, next) => {
         message: err.message,
         stackTrace: err.stack,
       });
+      break;
     case constants.FORBIDDEN:
       res.json({
         title: "FORBIDDEN",
