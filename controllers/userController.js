@@ -34,7 +34,6 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("User data is not valid");
   }
-  res.json({ message: "Register the User" });
 });
 
 // @desc Login a user
@@ -58,12 +57,12 @@ const loginUser = asyncHandler(async (req, res) => {
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "1m" }
+      { expiresIn: "15m" }
     );
     res.status(200).json({ accessToken });
   } else {
     res.status(401);
-    throw new Error("Wmail or password not valid");
+    throw new Error("E-mail or password not valid");
   }
 });
 

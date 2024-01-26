@@ -7,9 +7,11 @@ const {
   updateContact,
   deleteContact,
 } = require("../controllers/contactControllers");
+const validateToken = require("../middleware/validateTokenHandler");
 
 // Since routes have the same link we can chain them.
 
+router.use(validateToken);
 router.route("/").get(getContacts).post(createContact);
 router.route("/:id").get(getContact).put(updateContact).delete(deleteContact);
 
